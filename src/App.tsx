@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { Form } from "./components/Form.js";
+import { Form } from "./components/Form.tsx";
 
 function App() {
   return (
-    <div>
-      <Form subtitle={<h2>this is the subtitle</h2>}>
-        <h1>This is the children of Form</h1>
-      </Form>
-    </div>
+    <Form>
+      <h1>This is the children of Form</h1>
+    </Form>
   );
 }
 
