@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Form } from "./components/Form.tsx";
+import Home from "./assets/pages/home/home.tsx";
 
 function App() {
   return (
-    <Form>
-      <h1>This is the children of Form</h1>
-    </Form>
+    <div className="container mx-auto">
+      {" "}
+      <Home />
+    </div>
   );
 }
 
