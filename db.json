@@ -42,7 +42,8 @@
     {
       "id": 1,
       "name": "user_1",
-      "age": 10,
+      "email": "gg.gg@gg.com",
+      "password": "gg111",
       "tasks": 0
     },
     {
