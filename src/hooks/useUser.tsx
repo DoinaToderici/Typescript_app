@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface UserType {
   user: {
@@ -29,6 +29,7 @@ const emptyUserData = {
 
 export const useUser = () => {
   const [user, setUser] = useState<UserType["user"]>(emptyUserData);
+  // const [users, setUsers] = useState<UserType["user"]>(emptyUserData);
 
   const registrationUser = (data: any) => {
     axios
@@ -40,6 +41,21 @@ export const useUser = () => {
         console.log(error);
       });
   };
+
+  // get user from localStorage
+  useEffect(() => {
+    const connectedUser = localStorage.getItem("user");
+    if (connectedUser !== null) {
+      const data = JSON.parse(connectedUser);
+      setUser(data);
+    } else {
+      console.log("La clé n'existe pas dans le localStorage");
+    }
+  }, []);
+
+  // const loginUser = () => {
+  //   console.log("loginUser");
+  // };
 
   return {
     user,
