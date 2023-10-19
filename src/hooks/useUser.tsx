@@ -29,7 +29,7 @@ const emptyUserData = {
 
 export const useUser = () => {
   const [user, setUser] = useState<UserType["user"]>(emptyUserData);
-  // const [users, setUsers] = useState<UserType["user"]>(emptyUserData);
+  const [users, setUsers] = useState<UserType["user"][]>([]);
 
   const registrationUser = (data: any) => {
     axios
@@ -51,6 +51,18 @@ export const useUser = () => {
     } else {
       console.log("La clé n'existe pas dans le localStorage");
     }
+  }, []);
+
+  // get all users from DB
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/users")
+      .then(function (response) {
+        setUsers(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
   // const loginUser = () => {
