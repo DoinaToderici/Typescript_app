@@ -37,7 +37,6 @@
       "completed": false
     }
   ],
-
   "users": [
     {
       "id": 1,
@@ -51,6 +50,27 @@
       "name": "user_2",
       "age": 20,
       "tasks": 2
+    },
+    {
+      "id": 60,
+      "name": "user_3",
+      "email": "user_3@gmail.com",
+      "password": "user_333",
+      "tasks": 0
+    },
+    {
+      "id": 3,
+      "name": "user_4",
+      "email": "user_4@gmail.com",
+      "password": "user_444",
+      "tasks": 0
+    },
+    {
+      "id": 53,
+      "name": "test",
+      "email": "test@test.com",
+      "password": "test",
+      "tasks": 0
     }
   ]
 }

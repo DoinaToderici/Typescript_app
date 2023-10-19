@@ -1,17 +1,11 @@
 import { Card, Button, Typography } from "@material-tailwind/react";
 import { InputField } from "./reusable/Input";
-import { ChangeEvent, FormEvent, useState } from "react";
-
-const EMPTY_USER_DATA = {
-  id: Math.floor(Math.random() * 100),
-  name: "",
-  email: "",
-  pasword: "",
-  tasks: 0,
-};
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { appContext } from "../context/appContext";
 
 export function SignInForm() {
-  const [formData, setFormData] = useState<Object>(EMPTY_USER_DATA);
+  const { emptyUserData, registrationUser } = useContext(appContext);
+  const [formData, setFormData] = useState<Object>(emptyUserData);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -20,6 +14,9 @@ export function SignInForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (formData !== emptyUserData) {
+      registrationUser(formData);
+    }
   };
 
   return (
