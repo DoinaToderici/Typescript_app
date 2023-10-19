@@ -31,17 +31,6 @@ export const useUser = () => {
   const [user, setUser] = useState<UserType["user"]>(emptyUserData);
   const [users, setUsers] = useState<UserType["user"][]>([]);
 
-  const registrationUser = (data: any) => {
-    axios
-      .post("http://localhost:8000/users", data)
-      .then(function () {
-        localStorage.setItem("user", JSON.stringify(data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   // get user from localStorage
   useEffect(() => {
     const connectedUser = localStorage.getItem("user");
@@ -65,13 +54,32 @@ export const useUser = () => {
       });
   }, []);
 
-  // const loginUser = () => {
-  //   console.log("loginUser");
-  // };
+  const registrationUser = (data: any) => {
+    axios
+      .post("http://localhost:8000/users", data)
+      .then(function () {
+        localStorage.setItem("user", JSON.stringify(data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const loginUser = (userToConnect: any) => {
+    users.map((userDb) => {
+      if (userDb.email === userToConnect.email) {
+        setUser(userDb);
+        localStorage.setItem("user", JSON.stringify(userDb));
+      } else {
+        console.log("this user not faund");
+      }
+    });
+  };
 
   return {
     user,
     setUser,
+    users,
     registrationUser,
+    loginUser,
   };
 };

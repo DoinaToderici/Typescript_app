@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="home flex justify-center items-center">
       <div className="form-connection py-20">
-        <SignInForm />
+        <LoginForm />
       </div>
     </div>
   );

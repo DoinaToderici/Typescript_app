@@ -17,10 +17,17 @@ export const appContext = createContext<any>({
 
 // create provider context function()
 export const AppProvider = ({ children }: any) => {
-  const { user, setUser, registrationUser } = useUser(0);
+  const { user, setUser, users, registrationUser, loginUser } = useUser(0);
   return (
     <appContext.Provider
-      value={{ emptyUserData, user, setUser, registrationUser }}
+      value={{
+        emptyUserData,
+        user,
+        setUser,
+        users,
+        registrationUser,
+        loginUser,
+      }}
     >
       {children}
     </appContext.Provider>
