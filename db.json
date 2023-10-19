@@ -52,24 +52,17 @@
       "tasks": 2
     },
     {
-      "id": 60,
-      "name": "user_3",
-      "email": "user_3@gmail.com",
-      "password": "user_333",
+      "id": 14,
+      "name": "doina",
+      "email": "doina@doina.com",
+      "password": "doina123",
       "tasks": 0
     },
     {
-      "id": 3,
-      "name": "user_4",
-      "email": "user_4@gmail.com",
-      "password": "user_444",
-      "tasks": 0
-    },
-    {
-      "id": 53,
-      "name": "test",
-      "email": "test@test.com",
-      "password": "test",
+      "id": 91,
+      "name": "last test",
+      "email": "last@test.com",
+      "password": "last123",
       "tasks": 0
     }
   ]
