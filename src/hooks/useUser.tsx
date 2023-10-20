@@ -38,14 +38,14 @@ export const useUser = () => {
       const data = JSON.parse(connectedUser);
       setUser(data);
     } else {
-      console.log("La clé n'existe pas dans le localStorage");
+      console.log("Not user in localStorage");
     }
   }, []);
 
   // get all users from DB
   useEffect(() => {
     axios
-      .get("http://localhost:8000/users")
+      .get("http://localhost:3000/users")
       .then(function (response) {
         setUsers(response.data);
       })
@@ -56,7 +56,7 @@ export const useUser = () => {
 
   const registrationUser = (data: any) => {
     axios
-      .post("http://localhost:8000/users", data)
+      .post("http://localhost:3000/users", data)
       .then(function () {
         localStorage.setItem("user", JSON.stringify(data));
       })
@@ -67,10 +67,10 @@ export const useUser = () => {
   const loginUser = (userToConnect: any) => {
     users.map((userDb) => {
       if (userDb.email === userToConnect.email) {
-        setUser(userDb);
         localStorage.setItem("user", JSON.stringify(userDb));
+        return;
       } else {
-        console.log("this user not faund");
+        console.log("This user is not registered in DB");
       }
     });
   };

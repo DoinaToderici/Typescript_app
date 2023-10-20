@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useUser } from "../hooks/useUser";
 
 const emptyUserData = {
@@ -17,7 +17,8 @@ export const appContext = createContext<any>({
 
 // create provider context function()
 export const AppProvider = ({ children }: any) => {
-  const { user, setUser, users, registrationUser, loginUser } = useUser(0);
+  const { user, setUser, users, registrationUser, loginUser } = useUser();
+  const [componentToDisplay, setComponentToDisplay] = useState<String>("login");
   return (
     <appContext.Provider
       value={{
@@ -27,6 +28,8 @@ export const AppProvider = ({ children }: any) => {
         users,
         registrationUser,
         loginUser,
+        componentToDisplay,
+        setComponentToDisplay,
       }}
     >
       {children}

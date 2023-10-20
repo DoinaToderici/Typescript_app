@@ -9,12 +9,15 @@ import {
   useState,
 } from "react";
 import { appContext } from "../context/appContext";
+import { useNavigate } from "react-router-dom";
 
 export function SignInForm() {
-  const { emptyUserData, registrationUser } = useContext(appContext);
+  const { emptyUserData, registrationUser, setComponentToDisplay } =
+    useContext(appContext);
   const [formData, setFormData] = useState<Object>(emptyUserData);
   const registrationForm: MutableRefObject<any> = useRef();
   const form: HTMLFormElement = registrationForm.current;
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -26,6 +29,9 @@ export function SignInForm() {
     if (formData !== emptyUserData) {
       registrationUser(formData);
       form.reset();
+      // if (userConnected) {
+      //   navigate("/dashboard");
+      // }
     }
   };
 
@@ -71,7 +77,12 @@ export function SignInForm() {
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
           Already have an account?{" "}
-          <a href="#" className="font-medium text-gray-900">
+          <a
+            onClick={() => {
+              setComponentToDisplay("login");
+            }}
+            className="font-medium text-gray-900 cursor-pointer"
+          >
             Login In
           </a>
         </Typography>

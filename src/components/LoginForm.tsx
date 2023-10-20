@@ -2,6 +2,7 @@ import { Card, Button, Typography } from "@material-tailwind/react";
 import { InputField } from "./reusable/Input";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { appContext } from "../context/appContext";
+import { useNavigate } from "react-router-dom";
 
 type loginDataType = {
   email: string;
@@ -9,8 +10,10 @@ type loginDataType = {
 };
 
 export function LoginForm() {
-  const { emptyUserData, loginUser } = useContext(appContext);
+  const { emptyUserData, loginUser, setComponentToDisplay } =
+    useContext(appContext);
   const [formData, setFormData] = useState<loginDataType>(emptyUserData);
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -20,6 +23,9 @@ export function LoginForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     loginUser(formData);
+    // if (userConnected) {
+    //   navigate("/dashboard");
+    // }
   };
 
   return (
@@ -56,7 +62,12 @@ export function LoginForm() {
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
           Already you d'ont have an account?{" "}
-          <a href="#" className="font-medium text-gray-900">
+          <a
+            className="font-medium text-gray-900 cursor-pointer"
+            onClick={() => {
+              setComponentToDisplay("signin");
+            }}
+          >
             Sign In
           </a>
         </Typography>
