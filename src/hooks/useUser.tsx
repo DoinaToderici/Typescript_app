@@ -31,6 +31,7 @@ const emptyUserData = {
 export const useUser = () => {
   const [user, setUser] = useState<UserType["user"]>(emptyUserData);
   const [users, setUsers] = useState<UserType["user"][]>([]);
+  const [componentToDisplay, setComponentToDisplay] = useState<String>("login");
   const navigate = useNavigate();
 
   // get all users from DB
@@ -45,11 +46,23 @@ export const useUser = () => {
       });
   }, []);
 
+  // get user from localStorage
+  useEffect(() => {
+    const connectedUser = localStorage.getItem("user");
+    if (connectedUser !== null) {
+      const data = JSON.parse(connectedUser);
+      setUser(data);
+    } else {
+      console.log("Not user in localStorage");
+    }
+  }, []);
+
   const registrationUser = (data: any) => {
     axios
       .post("http://localhost:3000/users", data)
       .then(function () {
         localStorage.setItem("user", JSON.stringify(data));
+        setUser(data);
         navigate("/dashboard");
       })
       .catch(function (error) {
@@ -71,22 +84,21 @@ export const useUser = () => {
     }
   };
 
-  // get user from localStorage
-  useEffect(() => {
-    const connectedUser = localStorage.getItem("user");
-    if (connectedUser !== null) {
-      const data = JSON.parse(connectedUser);
-      setUser(data);
-    } else {
-      console.log("Not user in localStorage");
-    }
-  }, []);
+  const logOut = () => {
+    localStorage.clear();
+    setUser(emptyUserData);
+    setComponentToDisplay("login");
+    navigate("/");
+  };
 
   return {
     user,
     setUser,
     users,
+    componentToDisplay,
+    setComponentToDisplay,
     registrationUser,
     loginUser,
+    logOut,
   };
 };

@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { useUser } from "../hooks/useUser";
 import { Outlet } from "react-router-dom";
+import Header from "../components/reusable/Header";
 
 const emptyUserData = {
   id: Math.floor(Math.random() * 100),
@@ -18,8 +19,17 @@ export const appContext = createContext<any>({
 
 // create provider context function()
 export const AppProvider = () => {
-  const { user, setUser, users, registrationUser, loginUser } = useUser();
-  const [componentToDisplay, setComponentToDisplay] = useState<String>("login");
+  const {
+    user,
+    setUser,
+    users,
+    componentToDisplay,
+    setComponentToDisplay,
+    registrationUser,
+    loginUser,
+    logOut,
+  } = useUser();
+
   return (
     <appContext.Provider
       value={{
@@ -31,8 +41,10 @@ export const AppProvider = () => {
         loginUser,
         componentToDisplay,
         setComponentToDisplay,
+        logOut,
       }}
     >
+      <Header />
       <Outlet />
     </appContext.Provider>
   );

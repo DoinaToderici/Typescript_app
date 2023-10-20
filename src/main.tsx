@@ -21,7 +21,5 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <div className="container mx-auto">
-    <RouterProvider router={router} />
-  </div>
+  <RouterProvider router={router} />
 );
