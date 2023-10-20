@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { useUser } from "../hooks/useUser";
+import { Outlet } from "react-router-dom";
 
 const emptyUserData = {
   id: Math.floor(Math.random() * 100),
@@ -16,7 +17,7 @@ export const appContext = createContext<any>({
 });
 
 // create provider context function()
-export const AppProvider = ({ children }: any) => {
+export const AppProvider = () => {
   const { user, setUser, users, registrationUser, loginUser } = useUser();
   const [componentToDisplay, setComponentToDisplay] = useState<String>("login");
   return (
@@ -32,7 +33,7 @@ export const AppProvider = ({ children }: any) => {
         setComponentToDisplay,
       }}
     >
-      {children}
+      <Outlet />
     </appContext.Provider>
   );
 };

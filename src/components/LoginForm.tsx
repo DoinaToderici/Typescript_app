@@ -1,8 +1,7 @@
 import { Card, Button, Typography } from "@material-tailwind/react";
 import { InputField } from "./reusable/Input";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { appContext } from "../context/appContext";
-import { useNavigate } from "react-router-dom";
 
 type loginDataType = {
   email: string;
@@ -10,10 +9,9 @@ type loginDataType = {
 };
 
 export function LoginForm() {
-  const { emptyUserData, loginUser, setComponentToDisplay } =
+  const { emptyUserData, loginUser, setComponentToDisplay, user } =
     useContext(appContext);
   const [formData, setFormData] = useState<loginDataType>(emptyUserData);
-  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -23,9 +21,6 @@ export function LoginForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     loginUser(formData);
-    // if (userConnected) {
-    //   navigate("/dashboard");
-    // }
   };
 
   return (
