@@ -1,14 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useUser } from "../hooks/useUser";
 import { Outlet } from "react-router-dom";
 import Header from "../components/reusable/Header";
+import { usePost } from "../hooks/usePost";
 
 const emptyUserData = {
   id: Math.floor(Math.random() * 100),
   name: "",
   email: "",
   password: "",
-  tasks: 0,
+  posts: 0,
 };
 
 // create context and set default value
@@ -30,6 +31,8 @@ export const AppProvider = () => {
     logOut,
   } = useUser();
 
+  const { emptyPost, post, setPost, posts, setPosts } = usePost();
+
   return (
     <appContext.Provider
       value={{
@@ -42,6 +45,12 @@ export const AppProvider = () => {
         componentToDisplay,
         setComponentToDisplay,
         logOut,
+
+        emptyPost,
+        post,
+        setPost,
+        posts,
+        setPosts,
       }}
     >
       <Header />

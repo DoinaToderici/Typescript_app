@@ -8,7 +8,7 @@ interface UserType {
     name: string | undefined;
     email: string | undefined;
     password: string | undefined;
-    tasks: number;
+    posts: number;
   };
   setUser: Dispatch<SetStateAction<UserType>>;
   userConnected: {
@@ -16,7 +16,7 @@ interface UserType {
     name: string | undefined;
     email: string | undefined;
     password: string | undefined;
-    tasks: number;
+    posts: number;
   };
 }
 
@@ -25,7 +25,7 @@ const emptyUserData = {
   name: "",
   email: "",
   password: "",
-  tasks: 0,
+  posts: 0,
 };
 
 export const useUser = () => {

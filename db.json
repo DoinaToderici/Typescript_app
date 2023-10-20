@@ -1,40 +1,64 @@
 {
-  "tasks": [
+  "posts": [
     {
       "userId": 2,
       "id": 1,
       "title": "delectus aut autem",
-      "completed": false
+      "content": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.",
+      "likes": 0,
+      "unlikes": 0,
+      "date": "17/09/2023",
+      "img": ""
     },
     {
       "userId": 2,
       "id": 2,
       "title": "quis ut nam facilis et officia qui",
-      "completed": false
+      "content": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.",
+      "likes": 0,
+      "unlikes": 0,
+      "date": "17/09/2023",
+      "img": ""
     },
     {
       "userId": 1,
       "id": 3,
       "title": "fugiat veniam minus",
-      "completed": false
+      "content": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.",
+      "likes": 0,
+      "unlikes": 0,
+      "date": "17/09/2023",
+      "img": ""
     },
     {
       "userId": 1,
       "id": 4,
       "title": "et porro tempora",
-      "completed": true
+      "content": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.",
+      "likes": 0,
+      "unlikes": 0,
+      "date": "17/09/2023",
+      "img": ""
     },
     {
       "userId": 1,
       "id": 5,
       "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-      "completed": false
+      "content": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.",
+      "likes": 0,
+      "unlikes": 0,
+      "date": "17/09/2023",
+      "img": ""
     },
     {
       "userId": 1,
       "id": 6,
       "title": "qui ullam ratione quibusdam voluptatem quia omnis",
-      "completed": false
+      "content": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.",
+      "likes": 0,
+      "unlikes": 0,
+      "date": "17/09/2023",
+      "img": ""
     }
   ],
   "users": [
@@ -43,27 +67,27 @@
       "name": "user_1",
       "email": "gg.gg@gg.com",
       "password": "gg111",
-      "tasks": 0
+      "posts": 0
     },
     {
       "id": 2,
       "name": "user_2",
       "age": 20,
-      "tasks": 2
+      "posts": 2
     },
     {
       "id": 14,
       "name": "doina",
       "email": "doina@doina.com",
       "password": "doina123",
-      "tasks": 0
+      "posts": 0
     },
     {
       "id": 62,
       "name": "test",
       "email": "test@test.com",
       "password": "test",
-      "tasks": 0
+      "posts": 0
     }
   ]
 }

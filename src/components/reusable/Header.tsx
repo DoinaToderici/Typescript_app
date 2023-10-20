@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <div className=" shadow-xl">
       <div className="container py-2 mx-auto flex justify-between items-center">
-        <Link to="/dashboard" className="user ">
+        <Link to="/" className="user ">
           <PiMediumLogoThin className="text-5xl font-extrabold text-blue-600/75 cursor-pointer" />
         </Link>
         {user.email !== "" && (
