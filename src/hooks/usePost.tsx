@@ -1,35 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Post, Posts } from "../types";
 
-const emptyPost = {
+export const initialPost = {
   userId: null,
   id: Math.floor(Math.random() * 100),
   title: "",
   content: "",
   likes: 0,
   unlikes: 0,
-  coments: [{ coment: "" }],
+  comments: [{ description: "" }],
   date: new Date().toLocaleDateString("en-GB"),
   img: "",
 };
 
-export type PostType = {
-  post: {
-    userId: number;
-    id: number;
-    title: string;
-    content: string;
-    likes: number;
-    unlikes: number;
-    coments: [{ coment: string }];
-    date: string;
-    img: string;
-  };
-};
-
 export const usePost = () => {
-  const [post, setPost] = useState<PostType["post"]>(emptyPost);
-  const [posts, setPosts] = useState<PostType["post"][]>([]);
+  const [post, setPost] = useState<Post>(initialPost);
+  const [posts, setPosts] = useState<Posts>([]);
 
   useEffect(() => {
     axios
@@ -40,14 +27,14 @@ export const usePost = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const addPostLike = (newLikedPost: any) => {
+  const addPostLike = (newLikedPost: Post) => {
     axios
       .put(`http://localhost:3000/posts/${newLikedPost.id}`, newLikedPost)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
-  const addPostUnlike = (newUnlikedPost: any) => {
+  const addPostUnlike = (newUnlikedPost: Post) => {
     axios
       .put(`http://localhost:3000/posts/${newUnlikedPost.id}`, newUnlikedPost)
       .then((res) => console.log(res))
@@ -55,7 +42,7 @@ export const usePost = () => {
   };
 
   return {
-    emptyPost,
+    initialPost,
     post,
     setPost,
     posts,

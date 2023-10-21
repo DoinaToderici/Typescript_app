@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { LoginForm } from "../../../components/LoginForm";
-import { SignInForm } from "../../../components/SignInForm";
-import { appContext } from "../../../context/appContext";
+import { LoginForm } from "../../components/LoginForm";
+import { SignInForm } from "../../components/SignInForm";
+import { appContext } from "../../context/appContext";
 
 export default function Home() {
   const { componentToDisplay } = useContext(appContext);

@@ -1,19 +1,19 @@
 import { useContext, useState } from "react";
-import { appContext } from "../../context/appContext";
-import { isEmpty } from "../../helpers";
-import { PostType } from "../../hooks/usePost";
+import { appContext } from "../context/appContext";
+import { isEmpty } from "../helpers";
 import { SlLike, SlDislike } from "react-icons/sl";
 import { AiOutlineComment } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import { Post } from "../types";
 
 export default function Dashboard() {
   const { posts, setPosts, user, addPostLike, addPostUnlike } =
     useContext(appContext);
 
-  const handlLike = (post: any) => {
+  const handlLike = (post: Post) => {
     const newLikedPost = { ...post, likes: post.likes + 1 };
-    const newPosts = posts.map((item: any) => {
+    const newPosts = posts.map((item: Post) => {
       if (item.id === post.id) {
         addPostLike(newLikedPost);
         return newLikedPost;
@@ -23,9 +23,9 @@ export default function Dashboard() {
     setPosts(newPosts);
   };
 
-  const handlUnlike = (post: any) => {
+  const handlUnlike = (post: Post) => {
     const newUnlikedPost = { ...post, unlikes: post.unlikes + 1 };
-    const newPosts = posts.map((item: any) => {
+    const newPosts = posts.map((item: Post) => {
       if (item.id === post.id) {
         addPostUnlike(newUnlikedPost);
         return newUnlikedPost;
@@ -40,7 +40,7 @@ export default function Dashboard() {
       <h1 className="text-center text-5xl mb-10">All posts</h1>
       <div className="posts-container">
         {!isEmpty(posts) &&
-          posts.map((post: PostType["post"]) => {
+          posts.map((post: Post) => {
             return (
               <div
                 className="post-card mb-20 p-10 grid grid-cols-3 gap-10 flex items-start shadow-lg shadow-lg"

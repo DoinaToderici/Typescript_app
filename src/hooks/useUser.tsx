@@ -1,26 +1,10 @@
 import axios from "axios";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { User, Users } from "../types";
+//  setUser: Dispatch<SetStateAction<UserType>;
 
-interface UserType {
-  user: {
-    id: number;
-    name: string | undefined;
-    email: string | undefined;
-    password: string | undefined;
-    posts: number;
-  };
-  setUser: Dispatch<SetStateAction<UserType>>;
-  userConnected: {
-    id: number;
-    name: string | undefined;
-    email: string | undefined;
-    password: string | undefined;
-    posts: number;
-  };
-}
-
-const emptyUserData = {
+export const initialUserData = {
   id: Math.floor(Math.random() * 100),
   name: "",
   email: "",
@@ -29,17 +13,19 @@ const emptyUserData = {
 };
 
 export const useUser = () => {
-  const [user, setUser] = useState<UserType["user"]>(emptyUserData);
-  const [users, setUsers] = useState<UserType["user"][]>([]);
-  const [componentToDisplay, setComponentToDisplay] = useState<String>("login");
+  const [user, setUser] = useState<User>(initialUserData);
+  const [users, setUsers] = useState<Users>([]);
+  const [componentToDisplay, setComponentToDisplay] = useState<
+    "login" | "signIn"
+  >("login");
   const navigate = useNavigate();
 
   // get all users from DB
   useEffect(() => {
     axios
       .get("http://localhost:3000/users")
-      .then(function (response) {
-        setUsers(response.data);
+      .then(function (res) {
+        setUsers(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -57,7 +43,7 @@ export const useUser = () => {
     }
   }, []);
 
-  const registrationUser = (data: any) => {
+  const registrationUser = (data: User) => {
     axios
       .post("http://localhost:3000/users", data)
       .then(function () {
@@ -70,7 +56,7 @@ export const useUser = () => {
       });
   };
 
-  const loginUser = (userToConnect: any) => {
+  const loginUser = (userToConnect: User) => {
     const loggedUser = users.find((userDb) => {
       return userDb.email === userToConnect.email;
     });
@@ -86,7 +72,7 @@ export const useUser = () => {
 
   const logOut = () => {
     localStorage.clear();
-    setUser(emptyUserData);
+    setUser(initialUserData);
     setComponentToDisplay("login");
     navigate("/");
   };

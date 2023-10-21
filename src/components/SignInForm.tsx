@@ -1,21 +1,13 @@
 import { Card, Button, Typography } from "@material-tailwind/react";
 import { InputField } from "./reusable/Input";
-import {
-  ChangeEvent,
-  FormEvent,
-  MutableRefObject,
-  useContext,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { appContext } from "../context/appContext";
+import { User } from "../types";
 
 export function SignInForm() {
-  const { emptyUserData, registrationUser, setComponentToDisplay } =
+  const { initialUserData, registrationUser, setComponentToDisplay } =
     useContext(appContext);
-  const [formData, setFormData] = useState<Object>(emptyUserData);
-  const registrationForm: MutableRefObject<any> = useRef();
-  const form: HTMLFormElement = registrationForm.current;
+  const [formData, setFormData] = useState<User>(initialUserData);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -24,9 +16,8 @@ export function SignInForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formData !== emptyUserData) {
+    if (formData !== initialUserData) {
       registrationUser(formData);
-      form.reset();
     }
   };
 
@@ -39,7 +30,6 @@ export function SignInForm() {
         Nice to meet you! Enter your details to register.
       </Typography>
       <form
-        ref={registrationForm}
         className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         onSubmit={handleSubmit}
       >

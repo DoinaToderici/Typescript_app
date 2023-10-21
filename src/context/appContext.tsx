@@ -2,21 +2,29 @@ import { createContext } from "react";
 import { useUser } from "../hooks/useUser";
 import { Outlet } from "react-router-dom";
 import Header from "../components/reusable/Header";
-import { usePost } from "../hooks/usePost";
+import { initialPost, usePost } from "../hooks/usePost";
+import { initialUserData } from "../hooks/useUser";
+import { AppContext } from "../types";
 
-const emptyUserData = {
-  id: Math.floor(Math.random() * 100),
-  name: "",
-  email: "",
-  password: "",
-  posts: 0,
+const initialContextData = {
+  user: initialUserData,
+  setUser: undefined,
+  users: [],
+  registrationUser: undefined,
+  loginUser: undefined,
+  componentToDisplay: undefined,
+  setComponentToDisplay: undefined,
+  logOut: undefined,
+  post: initialPost,
+  setPost: undefined,
+  posts: [],
+  setPosts: undefined,
+  addPostLike: undefined,
+  addPostUnlike: undefined,
 };
 
 // create context and set default value
-export const appContext = createContext<any>({
-  user: emptyUserData,
-  setUser: undefined,
-});
+export const appContext = createContext<AppContext>(initialContextData);
 
 // create provider context function()
 export const AppProvider = () => {
@@ -32,7 +40,7 @@ export const AppProvider = () => {
   } = useUser();
 
   const {
-    emptyPost,
+    initialPost,
     post,
     setPost,
     posts,
@@ -44,7 +52,6 @@ export const AppProvider = () => {
   return (
     <appContext.Provider
       value={{
-        emptyUserData,
         user,
         setUser,
         users,
@@ -54,7 +61,7 @@ export const AppProvider = () => {
         setComponentToDisplay,
         logOut,
 
-        emptyPost,
+        initialPost,
         post,
         setPost,
         posts,

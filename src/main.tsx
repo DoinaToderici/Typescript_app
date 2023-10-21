@@ -3,8 +3,8 @@ import "./styles/index.css";
 import { AppProvider } from "./context/appContext.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from "./assets/pages/home/Home.tsx";
-import Dashboard from "./assets/pages/Dashboard.tsx";
+import Home from "./pages/home/Home.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
 
 const router = createBrowserRouter([
   {

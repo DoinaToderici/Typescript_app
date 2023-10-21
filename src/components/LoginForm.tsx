@@ -1,17 +1,13 @@
 import { Card, Button, Typography } from "@material-tailwind/react";
 import { InputField } from "./reusable/Input";
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { appContext } from "../context/appContext";
-
-type loginDataType = {
-  email: string;
-  password: string;
-};
+import { loginData } from "../types";
 
 export function LoginForm() {
-  const { emptyUserData, loginUser, setComponentToDisplay, user } =
+  const { initialUserData, loginUser, setComponentToDisplay } =
     useContext(appContext);
-  const [formData, setFormData] = useState<loginDataType>(emptyUserData);
+  const [formData, setFormData] = useState<loginData>(initialUserData);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
