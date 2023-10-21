@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { appContext } from "../../context/appContext";
 import { isEmpty } from "../../helpers";
 import { PostType } from "../../hooks/usePost";
@@ -8,7 +8,32 @@ import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
 export default function Dashboard() {
-  const { posts, user } = useContext(appContext);
+  const { posts, setPosts, user, addPostLike, addPostUnlike } =
+    useContext(appContext);
+
+  const handlLike = (post: any) => {
+    const newLikedPost = { ...post, likes: post.likes + 1 };
+    const newPosts = posts.map((item: any) => {
+      if (item.id === post.id) {
+        addPostLike(newLikedPost);
+        return newLikedPost;
+      }
+      return item;
+    });
+    setPosts(newPosts);
+  };
+
+  const handlUnlike = (post: any) => {
+    const newUnlikedPost = { ...post, unlikes: post.unlikes + 1 };
+    const newPosts = posts.map((item: any) => {
+      if (item.id === post.id) {
+        addPostUnlike(newUnlikedPost);
+        return newUnlikedPost;
+      }
+      return item;
+    });
+    setPosts(newPosts);
+  };
 
   return (
     <div className="container mx-auto py-8">
@@ -37,15 +62,21 @@ export default function Dashboard() {
                         </>
                       )}
                       <span className="flex items-center">
-                        <SlLike className="mr-2 text-md font-extrabold cursor-pointer" />
+                        <SlLike
+                          className="mr-2 text-md font-extrabold cursor-pointer"
+                          onClick={() => handlLike(post)}
+                        />
                         {post.likes > 0 && (
-                          <span className="mr-4">post.likes</span>
+                          <span className="mr-4">{post.likes}</span>
                         )}
                       </span>
                       <span className="flex items-center text-gray-600/75">
-                        <SlDislike className="mr-2 text-md font-extrabold cursor-pointer" />{" "}
+                        <SlDislike
+                          className="mr-2 text-md font-extrabold cursor-pointer"
+                          onClick={() => handlUnlike(post)}
+                        />{" "}
                         {post.unlikes > 0 && (
-                          <span className="mr-4">post.unlikes</span>
+                          <span className="mr-4">{post.unlikes}</span>
                         )}
                       </span>
                       <span>

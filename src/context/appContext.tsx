@@ -31,7 +31,15 @@ export const AppProvider = () => {
     logOut,
   } = useUser();
 
-  const { emptyPost, post, setPost, posts, setPosts } = usePost();
+  const {
+    emptyPost,
+    post,
+    setPost,
+    posts,
+    setPosts,
+    addPostLike,
+    addPostUnlike,
+  } = usePost();
 
   return (
     <appContext.Provider
@@ -51,6 +59,8 @@ export const AppProvider = () => {
         setPost,
         posts,
         setPosts,
+        addPostLike,
+        addPostUnlike,
       }}
     >
       <Header />

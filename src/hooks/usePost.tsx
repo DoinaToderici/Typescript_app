@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 const emptyPost = {
   userId: null,
   id: Math.floor(Math.random() * 100),
@@ -39,5 +40,27 @@ export const usePost = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  return { emptyPost, post, setPost, posts, setPosts };
+  const addPostLike = (newLikedPost: any) => {
+    axios
+      .put(`http://localhost:3000/posts/${newLikedPost.id}`, newLikedPost)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const addPostUnlike = (newUnlikedPost: any) => {
+    axios
+      .put(`http://localhost:3000/posts/${newUnlikedPost.id}`, newUnlikedPost)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  return {
+    emptyPost,
+    post,
+    setPost,
+    posts,
+    setPosts,
+    addPostLike,
+    addPostUnlike,
+  };
 };
