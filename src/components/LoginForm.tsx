@@ -2,12 +2,14 @@ import { Card, Button, Typography } from "@material-tailwind/react";
 import { InputField } from "./reusable/Input";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { appContext } from "../context/appContext";
-import { loginData } from "../types";
+import { User } from "../types";
 
 export function LoginForm() {
-  const { initialUserData, loginUser, setComponentToDisplay } =
-    useContext(appContext);
-  const [formData, setFormData] = useState<loginData>(initialUserData);
+  const { loginUser, setComponentToDisplay } = useContext(appContext);
+  const [formData, setFormData] = useState<Partial<User>>({
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -16,7 +18,9 @@ export function LoginForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    loginUser(formData);
+    if (loginUser) {
+      loginUser(formData);
+    }
   };
 
   return (
@@ -56,7 +60,7 @@ export function LoginForm() {
           <a
             className="font-medium text-gray-900 cursor-pointer"
             onClick={() => {
-              setComponentToDisplay("signin");
+              setComponentToDisplay && setComponentToDisplay("signIn");
             }}
           >
             Sign In

@@ -27,6 +27,25 @@ export const usePost = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const updatePost = (postEditContent: Post) => {
+    axios
+      .put(`http://localhost:3000/posts/${postEditContent.id}`, postEditContent)
+      .then((res) => {
+        console.log(res);
+
+        const copyPosts = [...posts];
+        const newPosts = copyPosts.map((item) => {
+          if (item.id === res.data.id) {
+            return postEditContent;
+          }
+
+          return item;
+        });
+        setPosts(newPosts);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const addPostLike = (newLikedPost: Post) => {
     axios
       .put(`http://localhost:3000/posts/${newLikedPost.id}`, newLikedPost)
@@ -49,5 +68,6 @@ export const usePost = () => {
     setPosts,
     addPostLike,
     addPostUnlike,
+    updatePost,
   };
 };

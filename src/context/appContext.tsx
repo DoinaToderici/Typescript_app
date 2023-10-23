@@ -21,6 +21,7 @@ const initialContextData = {
   setPosts: undefined,
   addPostLike: undefined,
   addPostUnlike: undefined,
+  updatePost: undefined,
 };
 
 // create context and set default value
@@ -40,13 +41,13 @@ export const AppProvider = () => {
   } = useUser();
 
   const {
-    initialPost,
     post,
     setPost,
     posts,
     setPosts,
     addPostLike,
     addPostUnlike,
+    updatePost,
   } = usePost();
 
   return (
@@ -60,14 +61,13 @@ export const AppProvider = () => {
         componentToDisplay,
         setComponentToDisplay,
         logOut,
-
-        initialPost,
         post,
         setPost,
         posts,
         setPosts,
         addPostLike,
         addPostUnlike,
+        updatePost,
       }}
     >
       <Header />

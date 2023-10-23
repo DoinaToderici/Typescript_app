@@ -56,7 +56,7 @@ export const useUser = () => {
       });
   };
 
-  const loginUser = (userToConnect: User) => {
+  const loginUser = (userToConnect: Partial<User>) => {
     const loggedUser = users.find((userDb) => {
       return userDb.email === userToConnect.email;
     });

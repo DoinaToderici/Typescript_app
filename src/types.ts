@@ -6,15 +6,15 @@ export interface Comment {
 }
 
 export interface Post {
-  userId: number | null;
-  id: number;
-  title: string;
-  content: string;
-  likes: number;
-  unlikes: number;
-  comments: Array<Comment>;
-  date: string;
-  img: string;
+  userId?: number | null;
+  id?: number;
+  title?: string;
+  content?: string;
+  likes?: number;
+  unlikes?: number;
+  comments?: Array<Comment>;
+  date?: string;
+  img?: string;
 }
 
 export type Posts = Post[]; // Array<Post>
@@ -41,7 +41,7 @@ export interface AppContext {
   setUser: Dispatch<SetStateAction<User>> | undefined;
   users: Users;
   registrationUser: ((data: User) => void) | undefined;
-  loginUser: ((data: User) => void) | undefined;
+  loginUser: ((data: Partial<User>) => void) | undefined;
   componentToDisplay: "login" | "signIn" | undefined;
   setComponentToDisplay:
     | Dispatch<SetStateAction<"login" | "signIn">>
@@ -53,4 +53,5 @@ export interface AppContext {
   setPosts: Dispatch<SetStateAction<Posts>> | undefined;
   addPostLike: ((newLikedPost: Post) => void) | undefined;
   addPostUnlike: ((newUnlikedPost: Post) => void) | undefined;
+  updatePost: ((postEditContent: Post) => void) | undefined;
 }
