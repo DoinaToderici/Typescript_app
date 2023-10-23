@@ -22,6 +22,7 @@ const initialContextData = {
   addPostLike: undefined,
   addPostUnlike: undefined,
   updatePost: undefined,
+  deletePost: undefined,
 };
 
 // create context and set default value
@@ -48,6 +49,7 @@ export const AppProvider = () => {
     addPostLike,
     addPostUnlike,
     updatePost,
+    deletePost,
   } = usePost();
 
   return (
@@ -68,6 +70,7 @@ export const AppProvider = () => {
         addPostLike,
         addPostUnlike,
         updatePost,
+        deletePost,
       }}
     >
       <Header />

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { appContext } from "../context/appContext";
 import { isEmpty } from "../helpers";
 import { SlLike, SlDislike } from "react-icons/sl";
@@ -16,6 +16,7 @@ export default function Dashboard() {
     addPostLike,
     addPostUnlike,
     updatePost,
+    deletePost,
   } = useContext(appContext);
 
   const [postEditContent, setPostEditContent] = useState<Post>(post);
@@ -31,6 +32,12 @@ export default function Dashboard() {
       updatePost(postEditContent);
     }
     setPostEditContent({});
+  };
+
+  const handleDelete = (postDelete: Post) => {
+    if (deletePost) {
+      deletePost(postDelete);
+    }
   };
 
   const handlLike = (post: Post) => {
@@ -80,13 +87,17 @@ export default function Dashboard() {
                 <div className="post-content col-span-2">
                   {postEditContent !== undefined &&
                   postEditContent.id === post.id ? (
-                    <form onSubmit={(e: any) => handleEditSubmit(e)}>
+                    <form
+                      onSubmit={(e: FormEvent<HTMLFormElement>) =>
+                        handleEditSubmit(e)
+                      }
+                    >
                       <textarea
                         // variant="outlined"
                         autoFocus={true}
                         defaultValue={post.content}
                         name="toModifContent"
-                        onChange={(e: any) => handleEditChange(e)}
+                        onChange={(e: ChangeEvent) => handleEditChange(e)}
                         className="mt-1 px-3 py-2 h-40 bg-white border shadow-sm border-lime-300 placeholder-slate-400 focus:outline-none focus:border-lime-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       ></textarea>
                       <input
@@ -114,26 +125,25 @@ export default function Dashboard() {
                             className="cursor-ponter mr-2 text-xl cursor-pointer"
                             onClick={() => setPostEditContent(post)}
                           />
-                          <MdOutlineDeleteOutline className="cursor-ponter mr-2 text-xl cursor-pointer" />
+                          <MdOutlineDeleteOutline
+                            className="cursor-ponter mr-2 text-xl cursor-pointer"
+                            onClick={() => handleDelete(post)}
+                          />
                         </>
                       )}
-                      <span className="flex items-center">
+                      <span className="flex items-center text-gray-600/75  mr-3">
                         <SlLike
-                          className="mr-2 text-md font-extrabold cursor-pointer"
+                          className="mr-1 text-md font-extrabold cursor-pointer"
                           onClick={() => handlLike(post)}
                         />
-                        {post.likes > 0 && (
-                          <span className="mr-4">{post.likes}</span>
-                        )}
+                        {post.likes !== 0 && <span>{post.likes}</span>}
                       </span>
-                      <span className="flex items-center text-gray-600/75">
+                      <span className="flex items-center text-gray-600/75 mr-3">
                         <SlDislike
-                          className="mr-2 text-md font-extrabold cursor-pointer"
+                          className="mr-1 text-md font-extrabold cursor-pointer"
                           onClick={() => handlUnlike(post)}
                         />{" "}
-                        {post.unlikes > 0 && (
-                          <span className="mr-4">{post.unlikes}</span>
-                        )}
+                        {post.unlikes !== 0 && <span>{post.unlikes}</span>}
                       </span>
                       <span>
                         <AiOutlineComment className="text-xl  text-gray-500 cursor-pointer" />{" "}

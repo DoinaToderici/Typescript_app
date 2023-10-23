@@ -53,5 +53,6 @@ export interface AppContext {
   setPosts: Dispatch<SetStateAction<Posts>> | undefined;
   addPostLike: ((newLikedPost: Post) => void) | undefined;
   addPostUnlike: ((newUnlikedPost: Post) => void) | undefined;
-  updatePost: ((postEditContent: Post) => void) | undefined;
+  updatePost: ((postEdit: Post) => void) | undefined;
+  deletePost: ((postDelete: Post) => void) | undefined;
 }

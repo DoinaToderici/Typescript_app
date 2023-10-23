@@ -46,6 +46,17 @@ export const usePost = () => {
       .catch((err) => console.log(err));
   };
 
+  const deletePost = (postDelete: Post) => {
+    axios
+      .delete(`http://localhost:3000/posts/${postDelete.id}`)
+      .then((res) => {
+        const copyPosts = [...posts];
+        const newPosts = copyPosts.filter((item) => item.id !== postDelete.id);
+        setPosts(newPosts);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const addPostLike = (newLikedPost: Post) => {
     axios
       .put(`http://localhost:3000/posts/${newLikedPost.id}`, newLikedPost)
@@ -69,5 +80,6 @@ export const usePost = () => {
     addPostLike,
     addPostUnlike,
     updatePost,
+    deletePost,
   };
 };
