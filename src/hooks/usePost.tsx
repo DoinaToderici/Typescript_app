@@ -49,7 +49,7 @@ export const usePost = () => {
   const deletePost = (postDelete: Post) => {
     axios
       .delete(`http://localhost:3000/posts/${postDelete.id}`)
-      .then((res) => {
+      .then(() => {
         const copyPosts = [...posts];
         const newPosts = copyPosts.filter((item) => item.id !== postDelete.id);
         setPosts(newPosts);

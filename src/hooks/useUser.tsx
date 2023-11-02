@@ -58,10 +58,7 @@ export const useUser = () => {
 
   const loginUser = (userToConnect: Partial<User>) => {
     const loggedUser = users.find((userDb) => {
-      return (
-        userDb.email === userToConnect.email &&
-        userDb.password === userToConnect.password
-      );
+      return userDb.email === userToConnect.email;
     });
 
     if (loggedUser) {

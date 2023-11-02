@@ -10,6 +10,7 @@ export default function Home() {
     <div className="home container mx-auto py-8 flex justify-center items-center">
       <div className="form-connection py-12">
         <h1 className="text-center text-5xl mb-10">Hey !</h1>
+
         {componentToDisplay === "login" ? <LoginForm /> : <SignInForm />}
       </div>
     </div>
