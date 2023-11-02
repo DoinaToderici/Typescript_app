@@ -9,7 +9,7 @@ export default function Header() {
   const { user, logOut } = useContext(appContext);
 
   const handleLogOut = () => {
-    logOut();
+    logOut && logOut();
   };
 
   return (

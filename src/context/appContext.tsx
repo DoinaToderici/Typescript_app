@@ -7,6 +7,7 @@ import { initialUserData } from "../hooks/useUser";
 import { AppContext } from "../types";
 
 const initialContextData = {
+  initialUserData: initialUserData,
   user: initialUserData,
   setUser: undefined,
   users: [],
@@ -55,6 +56,7 @@ export const AppProvider = () => {
   return (
     <appContext.Provider
       value={{
+        initialUserData,
         user,
         setUser,
         users,

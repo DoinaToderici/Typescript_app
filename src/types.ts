@@ -37,6 +37,7 @@ export type loginData = {
 
 // CONTEXT
 export interface AppContext {
+  initialUserData: User;
   user: User;
   setUser: Dispatch<SetStateAction<User>> | undefined;
   users: Users;
